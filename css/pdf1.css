@@ -1,0 +1,42 @@
+table tr td,table tr th{
+	font-size: 9px;
+	text-align: center;
+	/*font-weight: bold;*/
+	font-family: Arial Black;
+	color: black;
+	/*border: 1px solid #000;
+	border-collapse: collapse;*/
+}
+table tr:nth-child(3) td,table tr:nth-child(4) td{
+	text-align: left;
+	/*border: 1px solid #000;
+	border-collapse: collapse;*/
+}
+table, tr, td,th{
+	border: 1px solid #000;
+	border-collapse: collapse;
+}
+table tr td.td_left{
+	text-align: left !important;
+	/*border: 1px solid #000;
+	border-collapse: collapse;*/
+}
+div{
+	font-size: 10px;
+	font-weight: bold;
+	text-align: right;
+	font-style: italic ;
+	margin-top: 5px;
+}
+table tr td,table tr th{
+	border-collapse: collapse !important;
+	box-shadow: none !important;
+	border: 1px solid #000 !important;
+}
+div.center{
+	
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center !important;
+}
+@page { size: 72mm 210mm; margin: 2%; margin-top: 0px;}

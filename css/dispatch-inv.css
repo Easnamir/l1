@@ -1,0 +1,50 @@
+table tr td,table tr th{
+	font-size: 9px;
+	font-family: Verdana;
+	line-height:20px;
+	border-collapse: collapse;
+}
+h1{
+	font-size: 18px;
+	line-height:20px;
+}
+
+h2,h3{
+	font-size: 12px;
+	line-height:20px;
+}
+table{
+	margin: 0;
+	text-align: center;
+	border-collapse: collapse;
+}
+.no-top{
+	border-top: none;
+}
+
+.no-top-left{
+	border-top: none;
+	border-left: none;
+}
+.no-border{
+	border: none;
+}
+.only-left{
+	border-top: none;
+	border-right: none;
+	border-bottom: none;
+}
+.no-top-bottom{
+	border-top: none;
+	border-bottom: none;
+}
+.terms{
+	font-size:9px;
+}
+.text-right{
+	text-align: right;
+}
+
+#item_table tr{
+    page-break-before: always;
+  }
