@@ -1,2 +1,2 @@
-# L1
-This is for all L1 projects
+# ipos-web
+Web application of Ipos
