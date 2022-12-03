@@ -297,14 +297,14 @@ else if(isset($_GET['error_zone'])){
           <p>
             <label class=" w3-small w3-margin-top">Select Company</label>
             <select class="w3-select w3-border" style="height: 32px;" name="security_code">
-              <option value="">Select Company Code</option>
-              <option value="zeta">ZETA BUILDTECH PVT. LTD.</option>
-		           <option value="beam">BEAM GLOBAL SPIRITS AND WINE (I) PVT. LTD.</option>
+              <option value="">Select Company</option>
+              <option value="demo">Loopintechies Services PVT. LTD.</option>
+		           <!-- <option value="beam">BEAM GLOBAL SPIRITS AND WINE (I) PVT. LTD.</option>
 		           <option value="gwalior">GWALIOR ALCOBREW PVT. LTD.</option>
 	            <option value="ALLIED">ALLIED BLENDERS AND DISTILLERS PVT. LTD.</option>
 		          <option value="GRANO69 BEVERAGES PRIVATE LIMITED">GRANO69 BEVERAGES PRIVATE LIMITED</option>
               <option value="SULA">SULA VINEYARDS LIMITED</option>
-              <option value="Inbev">Anheuser Busch Inbev India Ltd</option>
+              <option value="Inbev">Anheuser Busch Inbev India Ltd</option> -->
 
              
 
