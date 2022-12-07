@@ -40,49 +40,29 @@
 					<h3>Update challan</h3>
 					</div>
 						<div class="w3-col l12 w3-border w3-border-black w3-margin-bottom " style="margin-bottom: 3px!important;">
-					<!-- <div class="w3-col l2 w3-padding-small"> </div> -->
-                       
-						
-                   
-                   <div class="w3-col l2 w3-padding-small">
-						<label> Start Date </label>
-						<input class="w3-input w3-border" type="date" name="startdate" id="startdate">
-					</div>
-					<div class="w3-col l2 w3-padding-small">
-						<label> End Date </label>
-						<input class="w3-input w3-border" type="date" name="enddate" id="enddate">
-					</div>
+						<div class="w3-col l2 w3-padding-small">
+							<label for="tp_number">Tp Number</label>
+							<input type="text" placeholder="Enter TP Number" name="tp_num" id="tp_num" class="w3-input w3-border">
+						</div>
 
 					 <div class="w3-col l2 w3-padding-small">
-							<label>Department<span class="w3-text-red">*</span></label>
-              <select name="Department" class="w3-select" id="Department">
-								<option value="('DSIIDC','DCCWS','DTTDC','DSCSC')">Corporation</option>
+					 <label>Status<span class="w3-text-red">*</span></label>
+              <select name="tp_status" class="w3-select" id="tp_status">
+							<option value="">Change Status</option>
+							<option value="TP Received">TP Received</option>
+							<option value="TP Not Received">TP Not Received</option>
 							</select>
 						</div>
-						<div class="w3-container w3-center w3-col l2 w3-padding-small w3-margin-top">
-						<button class="w3-button w3-round w3-red tohide" name="submit" type="Submit" id="submit" onclick="challan_Status()">Submit</button>
+						<div class="w3-col l6 w3-padding-small">
+							<label for="tp_number">Remark</label>
+							<input type="text" placeholder="Enter Remark"  name="tp_remark" id="tp_remark" class="w3-input w3-border">
+						</div>
+						<div class="w3-container w3-center w3-col l1 w3-padding-small w3-margin-top">
+						<button class="w3-button w3-round w3-red tohide" onclick="updateChallanStatus()" name="submit" type="button" id="submit" >Submit</button>
 						
 					</div>
 
 					</div>
-					<div class="w3-col l12 w3-border w3-border-black" style="min-height:200px;max-height: 200px;   overflow:auto">
-					<div class="w3-border w3-border-grey">
-					<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable" border="1">
-					<thead>
-						<tr><th>SNo</th><th>Department</th><th>Vend Name</th><th>TP No</th><th>Challan No </th><th>Challan Date</th><th>Status</th><th>Remark </th><th>action </th></tr>	
-					</thead>
-						<tbody id="challan_Status"  >
-								</tbody>
-				</table>
-				</div>
-				</div>
-
-
-                     
-
-
-
-				
 			</div>
 		</div>
 		
@@ -138,14 +118,9 @@
   </div>
 	<?php include 'includes/footer.php'; ?>
 	<script type="text/javascript">
-
-
- var enddate = document.getElementById('enddate');
-		enddate.value= getTodaysDate();
-
-		var startdate =document.getElementById('startdate');
-	startdate.value = getFirstDay();
-	 
+ let vend_id = '';
+ let supply_date ='';
+ let challan_no='';
 const challan_Status = () =>{
  var Department=document.getElementById('Department');
 	if(Department.value==''){
@@ -165,8 +140,6 @@ const challan_Status = () =>{
 
 }
 		}
-
-
 const updatechallanStatus = (id) =>{
 			console.log(id);
 			document.getElementById('id01').style.display='block';
@@ -175,51 +148,88 @@ const updatechallanStatus = (id) =>{
 			let chalan_no = checkele.getAttribute('data-id');
 			let vend_id = checkele.getAttribute('data-vend');
 			let challan_date = checkele.getAttribute('data-challandate');
-
-
-			// console.log(chalan_no);
 			document.getElementById('pk_id').value=chalan_no;
 			document.getElementById('vend_id').value=vend_id;
 			document.getElementById('challan_date').value=challan_date;
-
-
-
 		}
-		const changeStatus = ()=>{
-			let status = document.getElementById('statusId');
-			let remark = document.getElementById('remark');
-
-			if(status.value==''){
-				
-				alert("Please change status");
-				status.focus();
-				return false;
-			}
-
-			if(remark.value==''){
-				alert("Please Enter remark");
-				remark.focus();
-				return false;
-			}
-
-			let form = document.getElementById('status_form');
-			let formData = new FormData(form);
-
-
-
-			var challan_no=document.getElementById('pk_id').value;
-			
-			var url="challan_statusdata.php?fun=changeStatus";
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-				document.getElementById('id01').style.display='none';
-				alert(this.responseText);
-				challan_Status();
+		
+		var tp_num = document.getElementById('tp_num');
+		tp_num.focus();
+		tp_num.addEventListener('change', function(){			
+			let url = 'status_query.php?fun=checkTpstatus&tp_num='+tp_num.value;
+			fetch(url).then(data=>data.json()).then(data=>{
+				if(data.length==0){
+					alert('Challan not found');
+					
+					window.location.reload();
+					return false;
 				}
-			};
-			xhttp.open("POST", url, true);
-			xhttp.send(formData);
+				console.log(data[0].SUPPLY_DATE.date);
+
+				 document.getElementById('tp_status').value=data[0].STATUS_CHALLAN?data[0].STATUS_CHALLAN:'';
+				 document.getElementById('tp_remark').value=data[0].REMARK_CHALLAN;
+				 vend_id = data[0].VEND_CODE;
+				 supply_date = data[0].SUPPLY_DATE.date;
+				 challan_no = data[0].CHALLAN_NO;
+
+
+			})
+		document.getElementById('tp_status').focus();
+		});
+
+		function updateChallanStatus(){
+			var tp_num = document.getElementById('tp_num');
+			var tp_status = document.getElementById('tp_status');
+			var tp_remark = document.getElementById('tp_remark');
+			if(tp_num.value.length !=15 ){
+				alert('Invalid tp_num');
+				tp_num.focus();
+				return false;
+			}
+			if(tp_status.value ==''){
+				alert('Please select status');
+				tp_status.focus();
+				return false;
+			}
+			if(tp_remark.value ==''){
+				alert('Please Enter Remark');
+				tp_remark.focus();
+				return false;
+			}
+			let url = 'status_query.php?fun=updateChallanStatus';
+			// console.log(url);
+			let body = JSON.stringify({
+			tp_no: tp_num.value,
+			challan_status: tp_status.value,
+			remark: tp_remark.value,
+			challan_date: supply_date,
+			pk_id: challan_no,
+			vend_id:vend_id
+
+		 });
+		//  console.log(body);
+			fetch(url, {
+     
+		 // Adding method type
+		 method: "POST",
+			
+		 // Adding body or contents to send
+		 body,
+			
+		 // Adding headers to the request
+		 headers: {
+				 "Content-type": "application/json; charset=UTF-8"
+		 }
+ })
+	
+ // Converting to JSON
+ .then(response => response.text())
+	
+ // Displaying results to console
+ .then(data => {
+	alert(data);
+	window.location.reload();
+ });
 		}
 	</script>
 </body>
