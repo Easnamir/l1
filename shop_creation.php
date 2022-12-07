@@ -117,10 +117,17 @@ if(isset($_GET['id'])){
 							<label>sales Man <span class="w3-text-red">*</span></label>
 							<select name="salesman" class="w3-select w3-border" id="salesman">
 								<option value="">Select sales Man</option>
-								
-					
-	 
-								
+								?> <?php
+								$sql1 = "select SALE_MAN_NAME from POPS_SALE_MAN ";
+	$stmt1 = sqlsrv_query($conn,$sql1);
+	$shop1= [];
+	while($row1=sqlsrv_fetch_array($stmt1,SQLSRV_FETCH_ASSOC)){
+		?>
+
+	                   <option  value="<?php echo $row1['SALE_MAN_NAME'] ?> "> <?php echo $row1['SALE_MAN_NAME'] ?></option>
+							<?php
+	}
+					?>
 							</select>
 						</div>
 						</div>
@@ -139,12 +146,12 @@ if(isset($_GET['id'])){
 				
 				<div class="w3-col l12 w3-margin-top">
 					
-							<div class='w3-col l12 ' style=" overflow: auto; " id="product_table"  >
+							<div class='w3-col l12 ' style=" overflow: auto; " id="product_table" width="120%"  >
 							<table border='1' class='w3-table w3-bordered w3-striped w3-border w3-hoverable' style="" >
 								<thead>
 								<tr class="w3-center  w3-red"  >
 									<th width="5%">S.No</th><th>Vend ID</th><th>Name</th><th>License No</th>
-									<th> Address </th><th>Pin</th><th>TIN No</th><th>PAN Number</th><th>Gst No</th><th>Fssai no </th><th>Department</th><th>Action</th>
+									<th> Address </th><th>Pin</th><th>TIN No</th><th>PAN Number</th><th>Gst No</th><th>Fssai no </th><th>Department</th><th>Sale Man Name</th><th>Action</th>
 								</tr>
 							</thead>
 								<tbody id="item_body"  >

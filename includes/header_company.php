@@ -23,6 +23,7 @@
 		<div class="w3-dropdown-hover">
 			<button class="w3-button">Admin</button>
 			<div class="w3-dropdown-content w3-bar-block w3-card-4">
+		<a href="Sales_man_creation.php" class="w3-bar-item w3-button tohide">Add Sales Man </a>
 		<a href="shop_creation.php" class="w3-bar-item w3-button tohide">Vend Configuration </a>
 		<a href="item_configuration.php" class="w3-bar-item w3-button tohide">Item Configuration</a>
 		<a href="performa_invoice_print.php" class="w3-bar-item w3-button">Proforma Invoice</a>
@@ -30,7 +31,8 @@
 		<a href="proforma_invoice_master.php" class="w3-bar-item w3-button">Proforma Master</a>	
 		
 		<a href="tally.php" class="w3-bar-item w3-button">Tally Report</a>	
-		<a href="po_creation.php" class="w3-bar-item w3-button">IP Creation</a>		
+		<a href="po_creation.php" class="w3-bar-item w3-button">IP Creation</a>	
+
 		
 	</div>
 </div>
@@ -79,6 +81,8 @@
 					<a href="orderwisereport.php" class="w3-bar-item w3-button tohide">Order Register Report </a>
  					<a href="monthwisereport.php" class="w3-bar-item w3-button tohide">Month Wise Report </a>
 					<a href="salereport.php" class="w3-bar-item w3-button tohide">Sale Register Report </a>
+					<a href="challan_report.php" class="w3-bar-item w3-button">Challan Report </a>	
+					<a href="invoice_report.php" class="w3-bar-item w3-button">Invoice Report </a>	
 			</div>
 		</div>
 		

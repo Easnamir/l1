@@ -157,11 +157,28 @@ else if(isset($_GET['fun']) && $_GET['fun']=='changeStatus'){
 		$data[] = $row;
 	
 		
-       echo "<tr><td  class='mid-text'>". ++$i. "</td><td  class='mid-text'>".$row['VEND_CODE']."</td><td  class='mid-text' >".$row['VEND_NAME']."</td><td  class='mid-text'>".$row['ExciseNO']."</td><td  class='mid-text'>".$row['VEND_ADDRESS']."</td><td>".$row['PIN_CODE']."</td><td  class='mid-text'>".$row['TIN']."</td><td  class='mid-text'>".$row['PAN_NO']."</td><td>".$row['GST_NO']."</td><td>".$row['FSSAI']."</td><td>".$row['DEPARTMENT']."</td><td class='mid-text point'><a href='shop_creation.php?id=".($row['VEND_DETAILS_PK'])."'><i class='fa fa-edit'></i></a></td></tr>";
+       echo "<tr><td  class='mid-text'>". ++$i. "</td><td  class='mid-text'>".$row['VEND_CODE']."</td><td  class='mid-text' >".$row['VEND_NAME']."</td><td  class='mid-text'>".$row['ExciseNO']."</td><td  class='mid-text'>".$row['VEND_ADDRESS']."</td><td>".$row['PIN_CODE']."</td><td  class='mid-text'>".$row['TIN']."</td><td  class='mid-text'>".$row['PAN_NO']."</td><td>".$row['GST_NO']."</td><td>".$row['FSSAI']."</td><td>".$row['DEPARTMENT']."</td><td>".$row['SALE_MANE']."</td><td class='mid-text point'><a href='shop_creation.php?id=".($row['VEND_DETAILS_PK'])."'><i class='fa fa-edit'></i></a></td></tr>";
 
 	}
 	echo "<tr></tr>";
       $_SESSION['Shop_List']=serialize($data);
+	}
+		else if (isset($_GET['list_sale']) )
+	{
+    $sql = "select * from POPS_SALE_MAN";
+	$stmt = sqlsrv_query($conn,$sql);
+	//var_dump(sqlsrv_num_rows($stmt));
+	$i=0;
+	
+	while($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)){
+		$data[] = $row;
+	
+		
+       echo "<tr><td  class='mid-text'>". ++$i. "</td><td  class='mid-text'>".$row['SALE_MAN_NAME']."</td><td  class='mid-text' >".$row['PHONE_NO']."</td><td  class='mid-text'>".$row['EMAIL']."</td><td  class='mid-text'>".$row['STATUS']."</td><td class='mid-text point'><a href='Sales_man_creation.php?id=".($row['POPS_SALE_MAN_PK'])."'><i class='fa fa-edit'></i></a></td></tr>";
+
+	}
+	echo "<tr></tr>";
+      // $_SESSION['Shop_List']=serialize($data);
 	}
 	//-----------------------------list of party end--------------------------------------------------
 	else if (isset($_GET['list_po']) )

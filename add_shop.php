@@ -18,7 +18,7 @@ include 'includes/connect.php';
           ,[GST_NO]='$gstno'
           ,[FSSAI]='$FSSAI'
            ,[UPDATED_DATE]=getdate()
-               
+            ,[SALE_MANE]='$salesman'   
            WHERE VEND_CODE='$vanderId'  or VEND_DETAILS_PK='$pk'
            END
            ELSE
@@ -37,9 +37,10 @@ include 'includes/connect.php';
            ,[PAN_NO]
            ,[GST_NO]
            ,[FSSAI]
+           ,[SALE_MANE]
            )
 
-   VALUES('$vanderId','$shopName','$companyName','$address','$pinCode','$exciseNo','SYSTEM','SYSTEM','$Department','$tinno','$panno','$gstno','$FSSA') 
+   VALUES('$vanderId','$shopName','$companyName','$address','$pinCode','$exciseNo','SYSTEM','SYSTEM','$Department','$tinno','$panno','$gstno','$FSSA','$salesman') 
    END";
 // exit;
    $stmt = sqlsrv_query($conn, $sql);

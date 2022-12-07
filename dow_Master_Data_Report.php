@@ -15,9 +15,9 @@ $todate1 = date("d-m-Y", strtotime($todate));
  $notcs = ['DSIIDC Limited','DCCWS Limited','DTTDC Limited','DSCSC Limited','CLUB'];
  $noecise = ['DSIIDC Limited','DCCWS Limited','DTTDC Limited','DSCSC Limited'];
  $hcr = ['CLUB','HOTEL','RESTAURANT'];
-if($Department=='ALL')
+if($Department=='All')
 {
-    $sql = "select DEPARTMENT_NAME,VEND_NAME,VEND_ADDRESS,PO_NO,aa.TP_NO,ISSUE_DATE,BRAND_NAME,SIZE_VALUE,CASE_QUANTITY,TP_STATUS,STATUS_CHALLAN,DISPATCH_DATE  ,RECEIVE_DATE,PO_DATE,MANUAL_STATUS,'',aa.CHALLAN_NO,SUPPLY_DATE,INVOICE_NO,INVOICE_DATE,wsp,excise,CUSTOM_DUTY,LIQUOR_TYPE_CD,po_month
+     $sql = "select DEPARTMENT_NAME,VEND_NAME,VEND_ADDRESS,PO_NO,aa.TP_NO,ISSUE_DATE,BRAND_NAME,SIZE_VALUE,CASE_QUANTITY,TP_STATUS,STATUS_CHALLAN,DISPATCH_DATE  ,RECEIVE_DATE,PO_DATE,MANUAL_STATUS,'',aa.CHALLAN_NO,SUPPLY_DATE,INVOICE_NO,INVOICE_DATE,wsp,excise,CUSTOM_DUTY,LIQUOR_TYPE_CD,po_month
 from (select TP_NO,isnull(DEPARTMENT_NAME,b.DEPARTMENT) as DEPARTMENT_NAME,a.PO_DATE,VEND_NAME,b.VEND_CODE,b.VEND_ADDRESS,
 b.TIN,b.PAN_NO,INVOICE_DATE,INVOICE_NO,PO_NO,a.BRAND_NAME,a.SIZE_VALUE,SUM(CASE_QUANTITY) as CASE_QUANTITY,CHALLAN_NO,SUPPLY_DATE,
 sum((a.wsp) *BOTTLE_QUANTITY) as wsp ,sum(EXCISE_DUTY*BOTTLE_QUANTITY) as excise ,sum((a.CUSTOM_DUTY) *BOTTLE_QUANTITY) as CUSTOM_DUTY ,d.LIQUOR_TYPE_CD,DATENAME(MONTH, PO_DATE)  as po_month
@@ -47,7 +47,7 @@ sum((a.wsp) *BOTTLE_QUANTITY) as wsp ,sum(EXCISE_DUTY*BOTTLE_QUANTITY) as excise
 
  ";
 }
-
+exit;
 
 	$stmt1 = sqlsrv_query($conn,$sql);
 	$i=0;
@@ -109,7 +109,7 @@ $html .= '<table border=1 cellspacing=0 cellpadding=5 width=700 align=center> <t
 }
 
 header('Content-Type: application/xls');
-			$file=" master_date.xls";
+			$file=" master_data.xls";
 			header("Content-Disposition: attachment; filename=$file");
 			echo $html;
 
