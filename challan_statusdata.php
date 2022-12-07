@@ -78,7 +78,6 @@ if(isset($_GET['fun']) && $_GET['fun']=='changeStatus'){
 		 ,[STATUS_CHALLAN]
 		 ,[REMARK_CHALLAN])
 	 VALUES('$vend_id','$challan_date','$tp_no','$user',getdate(),'$pk_id','$challan_status','$remark')
-	 
 	 END";
 $stmt = sqlsrv_query($conn,$sql);
 if($stmt !== false){
